@@ -1,7 +1,8 @@
+import Jsona from 'jsona'
 import { postLogin } from './services/postLogin'
 import { postSignup } from './services/postSignup'
 import { deleteToken } from './services/deleteToken'
-import { postConfirmation } from './services/postConfirmation'
+import { getConfirmation } from './services/getConfirmation'
 import { useState } from 'react'
 
 export const useAuth = () => {
@@ -20,8 +21,16 @@ export const useAuth = () => {
     console.log(response)
   }
 
-  const confirm = async params => {
-    await postConfirmation(params)
+  const confirm = async token => {
+    try {
+      const dataFormatter = new Jsona()
+      const response = await getConfirmation(token)
+      const responseData = await response.json()
+      console.log(responseData)
+      return dataFormatter.deserialize(responseData)
+    } catch {
+      return 'Something went wrong, the token may not be good anymore'
+    }
   }
 
   const logout = async () => {

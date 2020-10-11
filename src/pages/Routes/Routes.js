@@ -6,6 +6,7 @@ import { Users } from 'pages/Users'
 import { NotFound } from 'pages/NotFound'
 import { Signup } from 'pages/Signup'
 import { Login } from 'pages/Login'
+import { Confirm } from 'pages/Confirm'
 import styles from './Routes.module.scss'
 
 export const Routes = () => {
@@ -17,6 +18,7 @@ export const Routes = () => {
       <Users path="/users" />
       <Login path="/login" />
       <Signup path="/signup" />
+      <Confirm path="/confirmation" />
       <NotFound default />
     </Router>
   )
